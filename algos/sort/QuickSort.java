@@ -11,19 +11,19 @@ public class QuickSort {
     }
 
     private static void sort(int[] a, int lo, int hi) {
-        if (hi > lo) {
-            int mid = (hi - lo) / 2 + lo;
-            int i = lo;
-            int j = hi;
-            do {
-                while (a[i] < a[mid]) i++;
-                while (a[j] > a[mid]) j--;
-                if (i<=j) {
-                    swap(a, i++, j--);
+        if (lo < hi) {
+            int pivot = a[hi];
+            int l = lo;
+            for (int r = lo; r < hi; r++) {
+                if (a[r] < pivot) {
+                    swap(a, l, r);
+                    l++;
                 }
-            } while (i<=j);
-            sort(a, lo, j);
-            sort(a, i, hi);
+            }
+            swap(a, hi, l);
+
+            sort(a, lo, l-1);
+            sort(a, l+1, hi);
         }
     }
     
