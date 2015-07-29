@@ -6,30 +6,32 @@ package algos.sort;
  */
 public class HeapSort {
 
-    public static void sort(int a[]) {
-        for (int i = a.length/2; i >= 1; i--) {  //TODO: Reverse order
-            sink(a, i, a.length);
-        }
-        int n = a.length;
-        while (n > 1) {
-            a[0] = a[0]^a[n-1];
-            a[n-1] = a[0]^a[n-1];
-            a[0] = a[0]^a[n-1];
-            n--;
-            sink(a, 1, n);  //TODO: FIRST
+    private static void sink(int[] a, int i, int n) {
+        while (2*i <= n) {
+            int left = 2 * i;
+            int right = 2 * i + 1;
+            int largest;
+
+            if (left <= n && a[left] > a[i]) {
+                largest = left;
+            } else {
+                largest = i;
+            }
+
+            if (right <= n && a[right] > a[largest]) {
+                largest = right;
+            }
+
+            if (largest == i) break;
+            exch(a, i, largest);
+            i = largest;
         }
     }
 
-    private static void sink(int a[], int p, int n) {
-        while (2*p <= n) {
-            int c = 2*p;
-            if (c < n && a[c-1] < a[c]) c++;
-            if (!(a[p-1] < a[c-1])) break;
-            int tmp = a[p-1];
-            a[p-1] = a[c-1];
-            a[c-1] = tmp;
-            p = c;
-        }
+    private static void exch(int[] a, int i, int j) {
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
     }
 
 }
