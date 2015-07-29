@@ -5,6 +5,19 @@ package algos.sort;
  * Date: 4/21/15
  */
 public class HeapSort {
+    
+    public static void sort(int[] a) {
+        int n = a.length - 1;
+
+        for(int i=n/2; i>=0; i--){
+            sink(a, i, n);
+        }
+
+        for(int i=n; i>=0; i--) {
+            exch(a, 0, i);
+            sink(a, 0, --n);
+        }
+    }
 
     private static void sink(int[] a, int i, int n) {
         while (2*i <= n) {
