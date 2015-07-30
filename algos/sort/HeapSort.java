@@ -20,10 +20,9 @@ public class HeapSort {
     }
 
     private static void sink(int[] a, int parent, int n) {
-        while (2*parent <= n) {
-            int left = 2 * parent;
-            int right = left + 1;
-            int largest;
+        int left, right, largest;
+        while ((left = 2*parent) <= n) {
+            right = left + 1;
 
             if (left <= n && a[left] > a[parent]) {
                 largest = left;
