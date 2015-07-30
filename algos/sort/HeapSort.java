@@ -22,7 +22,7 @@ public class HeapSort {
     private static void sink(int[] a, int parent, int n) {
         while (2*parent <= n) {
             int left = 2 * parent;
-            int right = 2 * parent + 1;
+            int right = left + 1;
             int largest;
 
             if (left <= n && a[left] > a[parent]) {
