@@ -19,25 +19,25 @@ public class HeapSort {
         }
     }
 
-    private static void sink(int[] a, int i, int n) {
-        while (2*i <= n) {
-            int left = 2 * i;
-            int right = 2 * i + 1;
+    private static void sink(int[] a, int parent, int n) {
+        while (2*parent <= n) {
+            int left = 2 * parent;
+            int right = 2 * parent + 1;
             int largest;
 
-            if (left <= n && a[left] > a[i]) {
+            if (left <= n && a[left] > a[parent]) {
                 largest = left;
             } else {
-                largest = i;
+                largest = parent;
             }
 
             if (right <= n && a[right] > a[largest]) {
                 largest = right;
             }
 
-            if (largest == i) break;
-            exch(a, i, largest);
-            i = largest;
+            if (largest == parent) break;
+            exch(a, parent, largest);
+            parent = largest;
         }
     }
 
