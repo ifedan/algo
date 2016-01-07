@@ -13,9 +13,9 @@ public class HeapSort {
             sink(a, i, n);
         }
 
-        for(int i=n; i>=0; i--) {
+        for(int i=n; i>=1; i--) {
             exch(a, 0, i);
-            sink(a, 0, --n);
+            sink(a, 0, i-1);
         }
     }
 
