@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class RadixSort {
 
-    public static void lcs(int a[], int maxLength, int optionCount) {
+    public static void lsd(int a[], int maxLength, int optionCount) {
         int d = 1;
         while (d <= maxLength) {
             int[] count = new int[optionCount];
@@ -36,7 +36,7 @@ public class RadixSort {
         }
     }
     
-    private static void mcs(String[] a, int maxLength, int optionCount) {
+    private static void msd(String[] a, int maxLength, int optionCount) {
         int d = maxLength;
         while (d >= 0) {
             int[] count = new int[optionCount];
