@@ -20,6 +20,10 @@ public class FloydWarshall {
                 }
             }
         }
+        
+        if (dist[graph.length-1][graph.length-1] < 0) {
+            //has negative cycle
+        }
 
         return dist;
     }
