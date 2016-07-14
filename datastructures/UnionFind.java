@@ -1,12 +1,12 @@
-package algos;
+package datastructures;
 
-public class QuickUF {
+public class UnionFind {
 
     private int[] tree;
     private int[] weights;
     private int count;
 
-    public QuickUF(int size) {
+    public UnionFind(int size) {
         tree = new int[size];
         weights = new int[size];
         for (int i = 0; i < size; i++) {
@@ -56,9 +56,9 @@ public class QuickUF {
     }
 
     private void compress(int i, int newParent) {
-        while (i != data[i]) {
-            int parent = data[i];
-            data[i] = newParent;
+        while (i != tree[i]) {
+            int parent = tree[i];
+            tree[i] = newParent;
             i = parent;
         }
     }
