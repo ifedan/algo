@@ -1,9 +1,6 @@
 package algos.sort;
 
-/**
- * User: ifedan
- * Date: 4/21/15
- */
+
 public class QuickSort {
 
     public static void sort(int a[]) {

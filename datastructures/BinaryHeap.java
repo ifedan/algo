@@ -1,4 +1,4 @@
-package algos.structure;
+package datastructures;
 
 /**
  * User: ifedan

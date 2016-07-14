@@ -1,11 +1,6 @@
 package algos.search;
 
-/**
- * User: ifedan
- * Date: 4/21/15
- */
 public class BinarySearch {
-
 
     public static int search(int a[], int val) {
         int start = 0;

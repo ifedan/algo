@@ -1,10 +1,10 @@
-package algos.structure;
+package datastructures;
 
 /**
  * User: ifedan
  * Date: 4/23/15
  */
-public class RBT {
+public class RedBlackTree {
 
     private static class Node {
         int i;
@@ -78,7 +78,7 @@ public class RBT {
 
     public static void main(String[] args)
     {
-        BST tree = new BST();
+        BinarySearchTree tree = new BinarySearchTree();
         tree.insert(1);
         tree.insert(1);
         tree.insert(2);

@@ -1,15 +1,15 @@
-package algos;
+package datastructures;
 
 /**
  * User: ifedan
  * Date: 4/21/15
  */
-public class QuickUF {
+public class UnionFind {
 
     int[] tree;
     int[] weights;
 
-    public QuickUF(int size) {
+    public UnionFind(int size) {
         tree = new int[size];
         weights = new int[size];
         for (int i = 0; i < size; i++) {

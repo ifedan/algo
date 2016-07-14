@@ -1,9 +1,5 @@
 package algos.sort;
 
-/**
- * User: ifedan
- * Date: 4/21/15
- */
 public class MergeSort {
 
     public static void sort(int[] a) {

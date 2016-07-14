@@ -1,4 +1,4 @@
-package algos.structure;
+package datastructures;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ import java.util.*;
  * User: ifedan
  * Date: 4/22/15
  */
-public class BST {
+public class BinarySearchTree {
 
     private static class Node {
         Node left;
@@ -116,7 +116,7 @@ public class BST {
     }
 
     public static void main(String[] args) {
-        BST tree = new BST();
+        BinarySearchTree tree = new BinarySearchTree();
         tree.insert(1);
         tree.insert(1);
         tree.insert(2);
