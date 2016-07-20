@@ -1,12 +1,8 @@
 package datastructures;
 
-/**
- * User: ifedan
- * Date: 4/21/15
- */
 public class Queue {
 
-    private static class Node {
+    class Node {
         Node next;
         Object value;
     }

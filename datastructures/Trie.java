@@ -3,59 +3,39 @@ package datastructures;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * User: ifedan
- * Date: 4/21/15
- */
-public class Trie
-{
+public class Trie {
 
-    private static class Node {
-        Character ch;
+    class Node {
         Map<Character, Node> children = new HashMap<Character, Node>();
-        boolean end;
-
-        Node(Character c) {
-            this.ch = c;
-        }
+        boolean isLeaf;
     }
 
-    private Node root;
-
-    public Trie() {
-        root = new Node(null);
-    }
+    private Node root = new Node();
 
     public void insert(String word) {
-        Node root = this.root;
+        Node node = this.root;
         for (int i = 0; i < word.length(); i++) {
-            Character c = word.charAt(i);
-            Node child = root.children.get(c);
+            Node child = node.children.get(word.charAt(i));
             if (child == null) {
-                child = new Node(c);
-                root.children.put(c, child);
+                child = new Node();
+                node.children.put(word.charAt(i), child);
             }
-            root = child;
+            if (i == word.length() - 1) {
+                child.isLeaf = true;
+            }
+            node = child;
         }
-        root.end = true;
     }
 
-    public String search(String word) {
-        Node root = this.root;
-        StringBuffer sb = new StringBuffer();
-        int lastWord = 0;
+    public boolean contains(String word) {
+        Node node = this.root;
         for (int i = 0; i < word.length(); i++) {
-            Character c = word.charAt(i);
-            Node child = root.children.get(c);
+            Node child = node.children.get(word.charAt(i));
             if (child == null) {
-                break;
+                return false;
             }
-            sb.append(c);
-            if (child.end) {
-                lastWord = i;
-            }
-            root = child;
+            node = child;
         }
-        return sb.substring(0, lastWord+1);
+        return node.isLeaf;
     }
 }

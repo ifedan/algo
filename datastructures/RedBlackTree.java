@@ -76,19 +76,5 @@ public class RedBlackTree {
         node.size = (node.left != null ? node.left.size : 0) + (node.right != null ? node.right.size : 0) + 1;
     }
 
-    public static void main(String[] args)
-    {
-        BinarySearchTree tree = new BinarySearchTree();
-        tree.insert(1);
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(6);
-        tree.insert(5);
-        tree.insert(2);
-        tree.insert(10);
-        tree.insert(3);
-        tree.insert(11);
-        System.out.println("");
-    }
 
 }
