@@ -1,6 +1,6 @@
 package tasks.tree;
 
-public class LCA {
+public class LCAInBST {
 
     static class Node {
         Node left;

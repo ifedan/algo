@@ -1,4 +1,4 @@
-package tasks.string;
+package algos.string;
 
 public class KMP {
 
