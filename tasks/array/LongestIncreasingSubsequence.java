@@ -1,4 +1,4 @@
-package tasks.dp;
+package tasks.array;
 
 public class LongestIncreasingSubsequence {
 
