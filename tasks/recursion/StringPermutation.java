@@ -2,7 +2,7 @@ package tasks.recursion;
 
 import java.util.*;
 
-public class CombinationCharacters {
+public class StringPermutation {
 
     public static Collection<String> solve(char[] input) {
         Map<Character, Integer> map = new TreeMap<>();
@@ -19,22 +19,21 @@ public class CombinationCharacters {
         }
 
         List<String> results = new ArrayList<>();
-        solve(chars, counts, 0, new char[input.length], 0, results);
+        solve(chars, counts, 0, new char[input.length], results);
         return results;
     }
 
-    private static void solve(char[] chars, int[] counts, int start, char[] output, int len, Collection<String> results) {
-        results.add(new String(output, 0, len));
-        for (int i = start; i<chars.length; i++) {
-            if (counts[i] <= 0) {
-                continue;
-            }
 
+    private static void solve(char[] chars, int[] counts, int index, char[] output, Collection<String> results) {
+        if (index == output.length) {
+            results.add(new String(output));
+        }
+        for (int i = 0; i < chars.length; i++) {
+            if (counts[i] == 0) continue;
+            output[index] = chars[i];
             counts[i]--;
-            output[len] = chars[i];
-            solve(chars, counts, i, output, len+1, results);
+            solve(chars, counts, index+1, output, results);
             counts[i]++;
-
         }
     }
 
