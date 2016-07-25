@@ -23,7 +23,7 @@ public class Manacher {
         for (int i = 1; i < t.length-1; i++) {
             int mirror = center - (i-center); //...mirror...center...i.....right
             if (right > i) {
-                t[i] = Math.max(right-i, t[mirror]);
+                t[i] = Math.min(right-i, t[mirror]);
             }
 
             while(input[i+(1+t[i])] == input[i-(1+t[i])]) {
