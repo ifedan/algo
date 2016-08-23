@@ -11,7 +11,7 @@ public class MaxRectInHistogram {
         int max = Integer.MIN_VALUE;
         while (i < hist.length) {
             if (stack.isEmpty() || hist[stack.peek()] <= hist[i]) {
-                stack.push(i);
+                stack.push(i++);
             } else {
                 int top = stack.pop();
                 int area;
@@ -22,7 +22,6 @@ public class MaxRectInHistogram {
                 }
                 max = Math.max(max, area);
             }
-            i++;
         }
         while(!stack.isEmpty()) {
             int top = stack.pop();
