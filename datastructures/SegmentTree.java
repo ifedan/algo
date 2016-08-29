@@ -7,19 +7,25 @@ public class SegmentTree {
 
     public SegmentTree(int[] data) {
         this.data = data;
-        int size = 0; //2*2^log2n - 1
 
+        //2*2^log2n - 1
+        int size = (int) (2 * Math.pow(2.0, Math.floor((Math.log((double) data.length) / Math.log(2.0)) + 1)));
+
+        this.segments = new int[size];
+        if (data.length > 0) {
+            createTree(0, data.length-1, 0);
+        }
     }
 
-    private void createTree(int lo, int hi, int pos) {
+    private int createTree(int lo, int hi, int pos) {
         if (lo == hi) {
             segments[pos] = data[lo];
-            return;
+            return segments[pos];
         }
-        int mid = (hi-lo)/2+lo;
-        createTree(lo, mid, 2*pos+1);
-        createTree(mid+1, hi, 2*pos+2);
-        segments[pos] = segments[2*pos+1] + segments[2*pos+2];
+        int mid = (hi-lo)/2 + lo;
+        segments[pos] = createTree(lo, mid, 2*pos+1) + createTree(mid+1, hi, 2*pos+2);
+
+        return segments[pos];
     }
 
     public int rangeQuery(int qlo, int qhi) {
