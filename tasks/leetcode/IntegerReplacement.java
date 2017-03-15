@@ -1,3 +1,5 @@
+package tasks.leetcode;
+
 public class IntegerReplacement {
     public int integerReplacement(int n) {
         int count = 0;
