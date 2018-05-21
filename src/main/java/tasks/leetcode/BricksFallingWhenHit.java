@@ -1,4 +1,4 @@
-package leetcode;
+package tasks.leetcode;
 
 public class BricksFallingWhenHit {
 
