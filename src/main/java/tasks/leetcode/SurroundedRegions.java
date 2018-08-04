@@ -4,48 +4,53 @@ import java.util.Set;
 
 public class SurroundedRegions {
 
-    public static void solve(char[][] board) {
-        if (board.length < 3 || board[0].length < 3) {
-            return;
-        }
+    public void solve(char[][] board) {
+        if (board.length == 0) return;
+        fillRow(board, 0, 'O', 'Y');
+        fillRow(board, board.length - 1, 'O', 'Y');
+        fillCol(board, 0, 'O', 'Y');
+        fillCol(board, board[0].length - 1, 'O', 'Y');
 
-        for (int i  = 0; i < board.length; i++) {
-            fill(i, 0, board);
-            fill(i, board[i].length-1, board);
-        }
-
-        for (int j = 0; j < board[0].length; j++) {
-            fill(0, j, board);
-            fill(board.length-1, j, board);
-        }
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j] == '1') board[i][j] = 'O';
+        for (int i = 1; i < board.length - 1; i++) {
+            for (int j = 1; j < board[0].length - 1; j++) {
+                if (board[i][j] == 'O') {
+                    fill(board, i, j, 'O', 'X');
+                }
             }
         }
 
-        System.out.println();
+        fillRow(board, 0, 'Y', 'O');
+        fillRow(board, board.length - 1, 'Y', 'O');
+        fillCol(board, 0, 'Y', 'O');
+        fillCol(board, board[0].length - 1, 'Y', 'O');
     }
 
-    private static void fill(int x, int y, char[][] board) {
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) return;
-        if (board[x][y] == 'X') return;
-        if (board[x][y] == '1') return;
-
-        if (board[x][y] == 'O') {
-            board[x][y] = '1';
+    private void fillRow(char[][] board, int row, char curr, char next) {
+        for (int j = 0; j < board.length; j++) {
+            fill(board, row, j, curr, next);
         }
-        fill(x-1, y, board);
-        fill(x+1, y, board);
-        fill(x, y-1, board);
-        fill(x, y+1, board);
-
     }
 
-    public static void main(String[] args) {
-        char[][] b = new char[][]{{'O', 'O', 'O'}, {'O', 'O', 'O'}, {'O', 'O', 'O'}};
-        solve(b);
+    private void fillCol(char[][] board, int col, char curr, char next) {
+        for (int i = 0; i < board.length; i++) {
+            fill(board, i, col, curr, next);
+        }
+    }
+
+    public void fill(char[][] board, int x, int y, char curr, char next) {
+        if (x < 0 || y < 0 || x >= board.length || y >= board[0].length) {
+            return;
+        }
+        if (board[x][y] == 'X' || board[x][y] == next) {
+            return;
+        }
+        if (board[x][y] == curr) {
+            board[x][y] = next;
+        }
+        fill(board, x-1, y, curr, next);
+        fill(board, x+1, y, curr, next);
+        fill(board, x, y-1, curr, next);
+        fill(board, x, y+1, curr, next);
     }
 
 }

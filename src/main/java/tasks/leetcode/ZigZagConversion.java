@@ -24,4 +24,8 @@ public class ZigZagConversion {
         return sb[0].toString();
     }
 
+    public static void main(String[] args) {
+        zigzag("PAYPALISHIRING", 4);
+    }
+
 }

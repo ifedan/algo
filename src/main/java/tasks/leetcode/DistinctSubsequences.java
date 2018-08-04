@@ -4,7 +4,7 @@ public class DistinctSubsequences {
 
     public static int numDistinct(String s, String t) {
         int[][] dp = new int[t.length()+1][s.length()+1];
-        for (int i = 1; i <= s.length(); i++) {
+        for (int i = 0; i <= s.length(); i++) {
             dp[0][i] = 1;
         }
 
@@ -18,6 +18,10 @@ public class DistinctSubsequences {
             }
         }
         return dp[t.length()][s.length()];
+    }
+
+    public static void main(String[] args) {
+        numDistinct("rabbbit", "r");
     }
 
 }
