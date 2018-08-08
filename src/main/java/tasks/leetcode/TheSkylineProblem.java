@@ -22,6 +22,9 @@ public class TheSkylineProblem {
             if (x != o.x) {
                 return x - o.x;
             } else {
+                //larger should be first in the begging (two starts)
+                //smaller should be first in the end (two ends)
+                //other: start should be first
                 return (start ? -y : y) - (o.start ? -o.y : o.y);
             }
         }
@@ -64,6 +67,10 @@ public class TheSkylineProblem {
 
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        getSkyline(new int[][]{{2, 9, 10}, {3, 7, 15}, {5, 12, 12}, {15, 20, 10}, {19, 24, 8}});
     }
 
 }

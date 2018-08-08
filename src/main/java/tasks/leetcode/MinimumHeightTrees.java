@@ -4,44 +4,48 @@ import java.util.*;
 
 public class MinimumHeightTrees {
 
+    public static void main(String[] args) {
+        int[][] graph = new int[][]{{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}};
+        findMinHeightTrees(6, graph);
+    }
+
     public static List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        Set<Integer> vertex = new HashSet<Integer>();
-        for (int i = 0; i < n; i++) {
-            vertex.add(i);
+        if (edges.length == 0) {
+            List<Integer> result = new ArrayList<>();
+            result.add(0);
+            return result;
         }
-
-        List<int[]> edgeList = new ArrayList<int[]>();
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
         for (int[] edge : edges) {
-            edgeList.add(edge);
+            graph.compute(edge[0], (k, v) -> {
+                if (v == null) v = new HashSet<>();
+                v.add(edge[1]);
+                return v;
+            });
+            graph.compute(edge[1], (k, v) -> {
+                if (v == null) v = new HashSet<>();
+                v.add(edge[0]);
+                return v;
+            });
         }
 
-        Map<Integer, Integer> children = null;
-        while (edgeList.size() >= 2) {
-            children = new HashMap<Integer, Integer>();
-
-            for (int[] edge : edgeList) {
-                Integer count1 = children.get(edge[0]);
-                if (count1 == null) children.put(edge[0], 1);
-                else children.put(edge[0], count1 + 1);
-
-                Integer count2 = children.get(edge[1]);
-                if (count2 == null) children.put(edge[1], 1);
-                else children.put(edge[1], count2 + 1);
-            }
-
-            for (Iterator<int[]> it = edgeList.iterator(); it.hasNext(); ) {
-                int[] edge = it.next();
-                if (children.get(edge[0]) == 1){
-                    vertex.remove(edge[0]);
-                    it.remove();
-                } else if (children.get(edge[1]) == 1) {
-                    vertex.remove(edge[1]);
-                    it.remove();
+        while (graph.size() > 2) {
+            Set<Integer> nodesWithOneChild = new HashSet<>();
+            for (Map.Entry<Integer, Set<Integer>> entry : graph.entrySet()) {
+                if (entry.getValue().size() == 1) {
+                    nodesWithOneChild.add(entry.getKey());
                 }
             }
+            for (Integer toRemove : nodesWithOneChild) {
+                Set<Integer> children = graph.get(toRemove);
+                for (Integer child : children) {
+                    graph.get(child).remove(toRemove);
+                }
+                graph.remove(toRemove);
+            }
         }
 
-        return new ArrayList<Integer>(vertex);
+        return new ArrayList<>(graph.keySet());
     }
 
 }
