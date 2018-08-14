@@ -35,7 +35,7 @@ public class SegmentTree {
     public void update(int index, int val) {
         int diff = val - data[index];
         data[index] = val;
-        update(index, diff, 0, data.length, 0);
+        update(index, diff, 0, data.length-1, 0);
     }
 
     private int rangeQuery(int qlo, int qhi, int lo, int hi, int pos) {
